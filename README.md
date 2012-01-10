@@ -1,0 +1,1 @@
+cloudpassage.com module for puppet
