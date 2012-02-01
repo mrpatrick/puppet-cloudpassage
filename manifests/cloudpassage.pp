@@ -42,7 +42,7 @@ class cloudpassage::service {
   
 class cloudpassage {
   $apikey = template("cloudpassage/key.erb")
-  $tags = template("tag.erb")
+  $tags = template("cloudpassage/tag.erb")
 
   include cloudpassage::install, cloudpassage::config, cloudpassage::service
 }
