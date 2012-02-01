@@ -1,7 +1,5 @@
 # CloudPassage
 
-
-
 class cloudpassage::install {  
   yumrepo{"cloudpassage" :
     descr => "CloudPassage production",
@@ -14,8 +12,8 @@ class cloudpassage::install {
     ensure => latest,
     notify => Exec["cphalod start"]
   }
-  exec{"cphalod start" :
-    command => "/etc/init.d/cphalod start"
+  exec{"cphalod start" :    
+    command => "/etc/init.d/cphalod start --api-key=$apikey --tag=$tags",
     cwd => "/etc/init.d",
     refreshonly => true,
     require => Package["cphalo"],
@@ -37,11 +35,14 @@ class cloudpassage::service {
   service{"cphalod" :
     ensure  => running,
     enable  => true,
-    start => "/etc/init.d/cphalod start --tag=$operatingsystem",
+    start => "/etc/init.d/cphalod start --tag=$tag",
     require => Class["cloudpassage::install"],
   }
 }
   
 class cloudpassage {
+  $apikey = template("cloudpassage/key.erb")
+  $tags = template("tag.erb")
+
   include cloudpassage::install, cloudpassage::config, cloudpassage::service
 }
