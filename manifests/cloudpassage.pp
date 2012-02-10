@@ -35,7 +35,7 @@ class cloudpassage::service {
   service{"cphalod" :
     ensure  => running,
     enable  => true,
-    start => "/etc/init.d/cphalod start --tag=$tag",
+    start => "/etc/init.d/cphalod start --tag=$tags",
     require => Class["cloudpassage::install"],
   }
 }
