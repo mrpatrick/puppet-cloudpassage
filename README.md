@@ -1,8 +1,14 @@
 # cloudpassage.com module for puppet
 
-## Installation
+## Module Installation
 
-* Drop this into your module path
-* Add your cloudpassage apikey to: ./templates/key.erb
-* Add a tag to: ./templates/tag.erb 
+* Add the 'cloudpassage' folder into your module path
+* Include the class and configure the relevant variables for your Cloud Passage account found on the 'API Keys' tab of your 'Site Administration' page.
 
+EXAMPLE:
+
+class { 'cloudpassage':
+  api_key  => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  repo_key => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  tags     => 'xxxxx'
+}
